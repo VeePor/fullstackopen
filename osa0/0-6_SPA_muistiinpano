@@ -1,0 +1,15 @@
+```mermaid
+
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+    Note right of browser: Includes new note as JSON with content and date
+
+    activate server
+    server-->>browser: Status code: 201 created
+    deactivate server
+
+    Note right of browser: No redirecting or reloading page. Content added to page
