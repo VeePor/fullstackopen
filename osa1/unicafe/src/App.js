@@ -14,7 +14,6 @@ const Display = (props) => {
   )
 }
 
-
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
