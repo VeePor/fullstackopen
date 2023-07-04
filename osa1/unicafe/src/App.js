@@ -14,6 +14,40 @@ const Display = (props) => {
   )
 }
 
+const Statistics = ({good, neutral, bad, all}) => {
+
+  const countAverage = () => {
+    if (all == 0) {
+      return 0
+    }
+    return (
+      (good - bad) / all
+    )
+  }
+
+  const countPositive = () => {
+    if (all == 0) {
+      return 0
+    }
+    return (
+      ( good / all ) * 100
+    )
+  }
+
+  return (
+    <div>
+      <h1>statistics</h1>
+      <Display text="good" counter={good} />
+      <Display text="neutral" counter={neutral} />
+      <Display text="bad" counter={bad} />
+      <Display text="all" counter={all} />
+
+      <Display text="average" counter={countAverage()} />
+      <Display text="positive" counter={countPositive() + " %"} />
+    </div>
+  )
+}
+
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
@@ -36,26 +70,6 @@ const App = () => {
     setAll(all + 1)
   }
 
-  const countAverage = () => {
-    if (all == 0) {
-      return 0
-    }
-    return (
-      (good - bad) / all
-    )
-  }
-
-  const countPositive = () => {
-    if (all == 0) {
-      return 0
-    }
-    return (
-      ( good / all ) * 100
-    )
-  }
-
-  console.log("average =", countAverage())
-
   return (
     <div>
       <h1>give feedback</h1>
@@ -63,14 +77,7 @@ const App = () => {
       <Button handleClick={increaseNeutral} text="neutral" />
       <Button handleClick={increaseBad} text="bad" />
 
-      <h1>statistics</h1>
-      <Display text="good" counter={good} />
-      <Display text="neutral" counter={neutral} />
-      <Display text="bad" counter={bad} />
-      <Display text="all" counter={all} />
-
-      <Display text="average" counter={countAverage()} />
-      <Display text="positive" counter={countPositive() + " %"} />
+      <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
     </div>
   )
 }
