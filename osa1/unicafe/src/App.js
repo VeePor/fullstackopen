@@ -16,6 +16,14 @@ const Display = (props) => {
 
 const Statistics = ({good, neutral, bad, all}) => {
 
+  if ( all == 0 ) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
+
   const countAverage = () => {
     if (all == 0) {
       return 0
@@ -36,7 +44,7 @@ const Statistics = ({good, neutral, bad, all}) => {
 
   return (
     <div>
-      <h1>statistics</h1>
+
       <Display text="good" counter={good} />
       <Display text="neutral" counter={neutral} />
       <Display text="bad" counter={bad} />
@@ -76,7 +84,8 @@ const App = () => {
       <Button handleClick={increaseGood} text="good" />
       <Button handleClick={increaseNeutral} text="neutral" />
       <Button handleClick={increaseBad} text="bad" />
-
+      
+      <h1>statistics</h1>
       <Statistics good={good} neutral={neutral} bad={bad} all={all}/>
     </div>
   )
