@@ -1,4 +1,9 @@
+import { useState } from 'react'
+
+
+
 const App = () => {
+
   const course = {
     name: 'Half Stack application development',
     id: 1,
@@ -34,6 +39,7 @@ const Course = (props) => {
     <div>
       <Header course={props.course} />
       <Content parts={props.course.parts} />
+      <Total parts={props.course.parts}/>
     </div>
   )
 }
@@ -50,6 +56,7 @@ const Header = (props) => {
 
 const Content = ({ parts }) => {
   console.log("Content", parts)
+  let sum = 0
   return (
     <div>
       {parts.map(part =>
@@ -59,14 +66,28 @@ const Content = ({ parts }) => {
   )
 }
 
-const Part = (props) => {
-  const part = props.part
+const Part = ({part}) => {
   console.log('part test', part)
   return (
     <>
       <p>
         {part.name} {part.exercises}
       </p>
+    </>
+  )
+}
+
+const Total = ({parts}) => {
+  var sum = 0
+  const arr = parts
+  arr.forEach(element => {
+    sum += element.exercises
+  });
+  return (
+    <>
+      <b>
+        Total of {sum} exercises
+      </b>
     </>
   )
 }
