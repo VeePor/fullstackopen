@@ -52,8 +52,9 @@ const App = () => {
 
   return (
     <div>
+      <h1>Web development curriculum</h1>
       {courses.map(course =>
-        <Course course={course} />
+        <Course key={course.id} course={course} />
       )}
     </div>
   )
@@ -73,9 +74,9 @@ const Course = (props) => {
 const Header = (props) => {
   return (
     <>
-      <h1>
+      <h2>
         {props.course.name}
-      </h1>
+      </h2>
     </>
   )
 }
@@ -104,9 +105,8 @@ const Part = ({ part }) => {
 }
 
 const Total = ({ parts }) => {
-  var sum = 0
   const arr = parts
-  sum = arr.reduce((s, p) => s + p.exercises, 0)
+  var sum = arr.reduce((s, p) => s + p.exercises, 0)
   console.log('sum', sum)
   return (
     <>
