@@ -28,11 +28,12 @@ const App = () => {
   )
 }
 
-const Course = ( props ) => {
+const Course = (props) => {
   console.log(props.course.name)
   return (
     <div>
       <Header course={props.course} />
+      <Content parts={props.course.parts} />
     </div>
   )
 }
@@ -47,21 +48,24 @@ const Header = (props) => {
   )
 }
 
-const Content = (props) => {
+const Content = ({ parts }) => {
+  console.log("Content", parts)
   return (
-    <>
-      <Part part={props.part[0]} exercises={props.exercises[0]}/>
-      <Part part={props.part[1]} exercises={props.exercises[1]}/>
-      <Part part={props.part[2]} exercises={props.exercises[2]}/>
-    </>
+    <div>
+      {parts.map(part =>
+        <Part key={part.id} part={part} />
+      )}
+    </div>
   )
 }
 
 const Part = (props) => {
+  const part = props.part
+  console.log('part test', part)
   return (
     <>
       <p>
-        {props.part} {props.exercises}
+        {part.name} {part.exercises}
       </p>
     </>
   )
